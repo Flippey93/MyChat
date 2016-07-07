@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">MyChat</string>
+    <string name="username">用户名</string>
+    <string name="password">密码</string>
+    <string name="login">登录</string>
+    <string name="newuser">新用户</string>
+    <string name="regist">注册</string>
+</resources>
