@@ -1,6 +1,7 @@
 package com.flippey.mychat.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,8 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.flippey.mychat.R;
+import com.flippey.mychat.activity.BaseActivity;
+import com.flippey.mychat.activity.LoginActivity;
 import com.flippey.mychat.utils.DialogUtil;
 import com.flippey.mychat.view.AlertDialog;
+import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 
 /**
@@ -69,8 +73,27 @@ public class PluginFragment extends BaseFragment {
         }).show();}
 
     private void logOut() {
-        ProgressDialog dialog = DialogUtil.makeDialog(getActivity(), "正在注销...");
+        final ProgressDialog dialog = DialogUtil.makeDialog(getActivity(), "正在注销...");
         dialog.show();
+        EMClient.getInstance().logout(true, new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                dialog.dismiss();
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+                getActivity().finish();
+            }
 
+            @Override
+            public void onError(int i, String s) {
+                dialog.dismiss();
+                BaseActivity activity = (BaseActivity) getActivity();
+                activity.showToast("注销失败：s="+s);
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
     }
 }
