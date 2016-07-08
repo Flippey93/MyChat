@@ -1,5 +1,7 @@
 package com.flippey.mychat.activity;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -10,7 +12,8 @@ import android.widget.TextView;
 import com.flippey.mychat.R;
 import com.flippey.mychat.utils.SpUtil;
 import com.flippey.mychat.utils.StringUtil;
-import com.flippey.mychat.utils.ToastUtil;
+import com.hyphenate.EMCallBack;
+import com.hyphenate.chat.EMClient;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, TextView
         .OnEditorActionListener {
@@ -63,7 +66,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     if (StringUtil.validateUsername(username)) {
                         mPassWord.requestFocus(View.FOCUS_RIGHT);
                     } else {
-                        ToastUtil.showToast("用户名不合法", this);
+                        showToast("用户名不合法");
                     }
                 }
                 break;
@@ -73,7 +76,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     if (StringUtil.validatePwd(password)) {
                         login();
                     } else {
-                        ToastUtil.showToast("请重新设置密码", this);
+                        showToast("请重新设置密码");
                     }
                 }
                 break;
@@ -82,5 +85,49 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
     //跳转到主界面
     private void login() {
+        //检验数据
+        String username = mUserName.getText().toString().trim();
+        String password = mPassWord.getText().toString().trim();
+        if (!StringUtil.validateUsername(username)) {
+            showToast("用户名不合法");
+            mUserName.requestFocus(View.FOCUS_RIGHT);
+            return;
+        }
+        if (!StringUtil.validatePwd(password)) {
+            showToast("密码不合法");
+            mPassWord.requestFocus(View.FOCUS_RIGHT);
+            return;
+        }
+        final ProgressDialog dialog = makeDialog("正在登陆...");
+        dialog.show();
+        EMClient.getInstance().login(username, password, new EMCallBack() {
+            @Override
+            public void onSuccess() {
+                //跳转到主界面
+                startActivity(MainActivity.class, true);
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onError(int i, String s) {
+                showToast("登陆失败...");
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        initData();
     }
 }
