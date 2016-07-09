@@ -6,17 +6,11 @@
 
     <include layout="@layout/view_header"/>
 
-    <RelativeLayout
+    <com.flippey.mychat.widget.ContactListview
+        android:id="@+id/contactListview"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <ListView
-            android:id="@+id/cotact_lv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </ListView>
-    </RelativeLayout>
+        android:layout_height="match_parent">
+    </com.flippey.mychat.widget.ContactListview>
 
 
 </LinearLayout>

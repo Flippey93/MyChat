@@ -98,6 +98,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             mPassWord.requestFocus(View.FOCUS_RIGHT);
             return;
         }
+        //保存用户名和密码
+        SpUtil.put(this, SP_KEY_USERNAME, username);
+        SpUtil.put(this, SP_KEY_PWD, password);
         final ProgressDialog dialog = makeDialog("正在登陆...");
         dialog.show();
         EMClient.getInstance().login(username, password, new EMCallBack() {

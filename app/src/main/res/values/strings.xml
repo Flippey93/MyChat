@@ -9,4 +9,5 @@
     <string name="contact_title">联系人</string>
     <string name="plugin_title">动态</string>
     <string name="exit_btn_content">退(%%)出</string>
+    <string name="addFriend">添加朋友</string>
 </resources>

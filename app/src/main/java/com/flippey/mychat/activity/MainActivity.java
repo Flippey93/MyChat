@@ -10,6 +10,9 @@ import com.flippey.mychat.fragment.BaseFragment;
 import com.flippey.mychat.fragment.ContactFragment;
 import com.flippey.mychat.fragment.ConversationFragment;
 import com.flippey.mychat.fragment.PluginFragment;
+import com.hyphenate.EMContactListener;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.exceptions.HyphenateException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,7 @@ public class MainActivity extends BaseActivity{
     private ImageView mPlugin;
     private List<BaseFragment> mFragmentList = new ArrayList<>();
     private int currentIndex = 0;
+    private EMContactListener EMContactListener;
 
     @Override
     protected int getLayoutId() {
@@ -50,6 +54,52 @@ public class MainActivity extends BaseActivity{
     @Override
     protected void initData() {
         initFragment();
+        initContactListener();
+    }
+
+    private void initContactListener() {
+        EMContactListener = new EMContactListener() {
+
+
+            @Override
+            public void onContactAdded(String s) {
+                showToast("添加了新的好友:" + s);
+                updateContactFragment();
+            }
+
+            @Override
+            public void onContactDeleted(String s) {
+                showToast("删除好友:" + s);
+                updateContactFragment();
+            }
+
+            @Override
+            public void onContactInvited(String s, String s1) {
+                showToast("收到来自" + s + "发来的邀请" + s1);
+                try {
+                    EMClient.getInstance().contactManager().acceptInvitation(s);
+                } catch (HyphenateException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onContactAgreed(String s) {
+                showToast(s+"同意了您的邀请");
+            }
+
+            @Override
+            public void onContactRefused(String s) {
+                showToast(s+"拒绝了您的邀请");
+            }
+        };
+    }
+
+    private void updateContactFragment() {
+        ContactFragment contactFragment = (ContactFragment) mFragmentList.get(1);
+        if (contactFragment.isAdded()) {
+            contactFragment.loadContactFromServer();
+        }
     }
 
     private void initFragment() {

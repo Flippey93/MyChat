@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/contact_lv_upcase"
+        android:text="A"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:paddingLeft="10dp"
+        android:background="#e8e8e8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/contact_lv_iv"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:src="@mipmap/avatar2"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"/>
+
+        <TextView
+            android:id="@+id/contact_lv_name"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/contact_lv_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dafg"/>
+    </RelativeLayout>
+
+</LinearLayout>
