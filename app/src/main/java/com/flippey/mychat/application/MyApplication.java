@@ -3,7 +3,10 @@ package com.flippey.mychat.application;
 import android.app.ActivityManager;
 import android.app.Application;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
+import android.media.SoundPool;
 
+import com.flippey.mychat.R;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 
@@ -22,6 +25,14 @@ public class MyApplication extends Application{
         super.onCreate();
         initBmob();
         initHuanXin();
+        initSoundPool();
+    }
+
+    private void initSoundPool() {
+        SoundPool soundPool = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
+        //返回音乐编号
+        int shots = soundPool.load(this, R.raw.shortss, 1);
+        int longs = soundPool.load(this, R.raw.longss, 1);
     }
 
     private void initHuanXin() {

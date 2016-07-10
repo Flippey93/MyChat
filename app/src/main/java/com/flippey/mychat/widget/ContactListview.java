@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -32,10 +33,6 @@ public class ContactListview extends RelativeLayout{
     }
 
     private void initData() {
-        /*for (int i = 0; i < 50; i++) {
-           mData.add("测试数据"+i);
-        }
-        mLv.setAdapter(new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,mData));*/
     }
 
     private void initView(Context context) {
@@ -45,5 +42,15 @@ public class ContactListview extends RelativeLayout{
 
     public void setAdapter(ListAdapter adapter) {
         mLv.setAdapter(adapter);
+    }
+
+
+    public void setOnItemClickListener(AdapterView.OnItemClickListener onItemClickListener) {
+        mLv.setOnItemClickListener(onItemClickListener);
+    }
+
+    public void setOnLongItemClickListener(AdapterView.OnItemLongClickListener
+                                                   onItemLongClickListener) {
+       mLv.setOnItemLongClickListener(onItemLongClickListener);
     }
 }

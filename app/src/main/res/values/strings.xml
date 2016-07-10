@@ -10,4 +10,5 @@
     <string name="plugin_title">动态</string>
     <string name="exit_btn_content">退(%%)出</string>
     <string name="addFriend">添加朋友</string>
+    <string name="chatWith">与%%聊天中</string>
 </resources>

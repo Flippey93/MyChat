@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+   <TextView
+       android:textSize="18sp"
+       android:textColor="#999999"
+       android:id="@+id/chat_time"
+       android:layout_gravity="center_horizontal"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="18:34"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_margin="5dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/iv_avatar"
+            android:src="@mipmap/avatar5"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size" />
+        <TextView
+            android:gravity="center"
+            android:background="@drawable/send_msg_normal"
+            android:layout_toLeftOf="@id/iv_avatar"
+            android:id="@+id/chat_contect"
+            android:layout_marginRight="15dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="dfsfdfasfsa"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/chat_contect"
+            android:id="@+id/chat_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>

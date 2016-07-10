@@ -16,9 +16,9 @@ import com.flippey.mychat.utils.ToastUtil;
  * @ Creat Time  2016/7/7 10:14
  */
 public abstract class BaseActivity  extends AppCompatActivity implements View.OnClickListener{
-    protected static String SP_KEY_USERNAME = "username";
-    protected static String SP_KEY_PWD = "password";
-    private Handler mHandler = new Handler();
+    public static String SP_KEY_USERNAME = "username";
+    public static String SP_KEY_PWD = "password";
+    public Handler mHandler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
